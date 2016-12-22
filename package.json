@@ -4,25 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "buildES": "buble index.js > build/siteES6.js",
-    "browserify": "browserify build/siteES6.js > build/site.js",
-    "build" : "npm-run-all buildES browserify"
-  },
-  "browser": {
-    "vue": "vue/dist/vue.common"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "semantic-ui": "^2.2.6",
-    "vue": "^2.1.6",
-    "vuex": "^2.1.1"
-  },
-  "devDependencies": {
-    "browserify": "^13.1.1",
-    "buble": "^0.15.1",
-    "eslint": "^3.12.2",
-    "npm-run-all": "^3.1.2"
+    "semantic-ui": "^2.2.6"
   }
 }
