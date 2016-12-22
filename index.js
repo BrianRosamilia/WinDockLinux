@@ -1,4 +1,3 @@
-hljs.initHighlightingOnLoad();
 
 const Vue = require('vue');
 const Vuex = require('vuex');

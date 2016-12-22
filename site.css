@@ -45,3 +45,11 @@ iframe body {
 .code {
     color:white;
 }
+
+.imgAlignMiddle  {
+vertical-align:middle !important;
+}
+
+.inline {
+    display:inline-block;
+}
