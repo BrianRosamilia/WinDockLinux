@@ -42,13 +42,15 @@
             <pre>
             <code class="code powershell"><span class="unselectable">PS > </span>if (!(Get-Command "choco" -errorAction SilentlyContinue))
 {
-    $env:ChocolateyInstall='D:\Program Files\Chocolatey'
+    $env:ChocolateyInstall="D:\Program Files\Chocolatey"
     iwr https://chocolatey.org/install.ps1 -UseBasicParsing | iex;`
 }
 choco upgrade virtualbox -y;refreshenv;`
 choco upgrade docker-machine -y;refreshenv;`
 docker-machine create --driver virtualbox --virtualbox-hostonly-cidr "192.168.90.1/24" default;`
-docker-machine env default | Invoke-Expression</code>
+docker-machine env default | Invoke-Expression;`
+write-host "Containers will be running here : $(docker-machine ip).  Now you can 'docker run' Linux images" -foreground "green"
+</code>
         </pre>
         </div>
 
@@ -63,26 +65,29 @@ docker-machine env default | Invoke-Expression</code>
             <pre>
             <code class="code powershell"><span class="unselectable">PS > </span>if (!(Get-Command "choco" -errorAction SilentlyContinue))
 {
-    $env:ChocolateyInstall='D:\Program Files\Chocolatey'
+    $env:ChocolateyInstall="D:\Program Files\Chocolatey"
     iwr https://chocolatey.org/install.ps1 -UseBasicParsing | iex;`
 }
 choco upgrade virtualbox -y;refreshenv;`
 choco upgrade docker-machine -y;refreshenv;`
 docker-machine create --driver virtualbox --virtualbox-hostonly-cidr "192.168.90.1/24" --virtualbox-memory 3330 default;`
 docker-machine env default | Invoke-Expression;`
-docker run -it -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Password@123' -p 1433:1433 -d microsoft/mssql-server-linux</code>
+docker run -it -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Password@123" -p 1433:1433 -d microsoft/mssql-server-linux;`
+write-host "Connect to SQL Server here : $(docker-machine ip):1433 Username : 'sa' Password 'Password@123'" -foreground "green"</code>
         </pre>
         </div>
         <div class="ui segment">
             <h3>Useful Commands</h3>
-            <p>SSH Into the docker-machine allocated VM</p>
+            <p>View the IP of your docker-machine allocated Linux host VM</p>
+            <pre><code class="code"><span class="unselectable">PS > </span>docker-machine ip</code></pre>
+            <p>SSH Into the VM</p>
             <pre><code class="code powershell"><span class="unselectable">PS > </span>docker-machine ssh</code></pre>
             <p>View all Docker processes on the VM (after SSHing)</p>
             <pre><code class="code"><span class="unselectable">> </span>docker ps -a</code></pre>
             <p>View logs from a docker process (after SSHing, where `name` is the name of the container seen in the `ps`
                 command)</p>
             <pre><code class="code"><span class="unselectable">> </span>docker logs `name`</code></pre>
-            <p>Destroy the docker-machine allocated VM</p>
+            <p>Destroy the VM</p>
             <pre><code class="code powershell"><span class="unselectable">PS> </span>docker-machine rm -f default</code></pre>
         </div>
     </div>
