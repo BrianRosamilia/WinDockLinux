@@ -46,6 +46,7 @@
     iwr https://chocolatey.org/install.ps1 -UseBasicParsing | iex;`
 }
 choco upgrade virtualbox -y;refreshenv;`
+choco upgrade docker -y;refreshenv;`
 choco upgrade docker-machine -y;refreshenv;`
 docker-machine create --driver virtualbox --virtualbox-hostonly-cidr "192.168.90.1/24" default;`
 docker-machine env default | Invoke-Expression;`
@@ -68,6 +69,7 @@ write-host "Containers will be running here : $(docker-machine ip).  Now you can
     iwr https://chocolatey.org/install.ps1 -UseBasicParsing | iex;`
 }
 choco upgrade virtualbox -y;refreshenv;`
+choco upgrade docker -y;refreshenv;`
 choco upgrade docker-machine -y;refreshenv;`
 docker-machine create --driver virtualbox --virtualbox-hostonly-cidr "192.168.90.1/24" --virtualbox-memory 3330 default;`
 docker-machine env default | Invoke-Expression;`
